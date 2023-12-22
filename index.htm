@@ -1,0 +1,78 @@
+<html>
+<head>
+<title>Книги Агаты Кристи</title>
+<link rel="stylesheet" type="text/css" href="style.css" />
+</head>
+<body>
+<img src="C:\Users\veron\Downloads\6890dd41b505e5728078b214b8d3bdd9.gif" /><br><br>
+<tr>
+    <td  valign="top" >Читали ли Вы книги Агаты Кристи?</td>
+    <td>
+      <input type="radio" name="sex" value="no" checked>
+      нет
+      <input type="radio" name="sex" value="yes">
+      да
+    </td>
+   </tr><br><br>
+<form name="forma1">
+<font>Если да, то какую именно?</font> 
+<select name="site" size="1">
+<option selected value="home">"Десять негритят"
+<option value="2">"Убийство в Восточном экспрессе"
+<option value="3">"Смерть на Ниле"
+<option value="4">"Убийство Роджера Экройда"
+<option value="5">"Свидание со смертью"
+<option value="6">"В 4:50 с вокзала Паддингтона"
+<option value="7">"Убийство по алфавиту"
+</select><br><br>
+<button name="forma2" onClick="" type="button">
+<font>выбрать</font>
+</button>
+</form>
+<body>
+<p>Если в списке нет книги, которую вы читали, то укажите ее название </p>
+<form id="studentForm">
+  <label for="surname">Название книги:</label>
+  <input type="text" id="surname" name="surname">
+  <input type="button" value="Добавить книгу" onclick="addStudent()">
+</form>
+<table id="studentsTable">
+  <tr>
+    <th>Список книг</th>
+  </tr>
+</table>
+<script>
+  var students = [];
+  function addStudent() {
+    var surname = document.getElementById("surname").value;
+     students.push({ surname: surname});
+    students.sort(function(a, b) {
+      return a.surname.localeCompare(b.surname);
+    });
+    updateTable();
+    updateStats();
+  }
+  function updateTable() {
+    var table = document.getElementById("studentsTable");
+    while (table.rows.length > 1) {
+      table.deleteRow(-1);
+    }
+    students.forEach(function(student) {
+      var row = table.insertRow(-1);
+      var cell1 = row.insertCell(0);
+      var cell2 = row.insertCell(1);
+      cell1.innerHTML = student.surname;
+    });
+  }
+  function updateStats() {
+    var totalPoints = students.reduce((acc, student) => acc + student.points, 0);
+    var maxPoints = students.length * 100; // Предполагаем максимальное количество баллов 100 на студента
+    var passCount = students.filter(student => student.points >= 60).length;
+  }
+</script>
+<p><a href="file:///D:/1.htm">"Смерть в облаках"</a></p>
+<p><a href="file:///D:/2.htm">"Труп в библиотеке"</a></p>
+
+</body>
+</body>
+</html>
